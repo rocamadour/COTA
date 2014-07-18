@@ -1,0 +1,526 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Argentina Standard Time">
+<General productName="HP Unified Functional Testing" productVer="11.50" os="Windows 7" host="ARBACNBK148"><DocLocation><![CDATA[C:\Automatización\COTA\Alta Avería]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[Alta Avería]]></DName>
+<Res><![CDATA[Res17]]></Res>
+<RunType fmStep="True" /><DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" ShowDifference="False">
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<Action rID="T3">
+<AName><![CDATA[AltaAveria]]></AName>
+<Step rID="T4">
+<Obj plainTxt="False" ><![CDATA[Recepcionar Averías]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:07]]></Time>
+<TimeTick>1405534627</TimeTick>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Número de Línea:.SetSelection]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0, 0, 2]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:07]]></Time>
+<TimeTick>1405534627</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="9" Source="AltaAveria" SourceLine="15" >
+<Disp><![CDATA[Número de Línea:.SetSelection]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Número de Línea:.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicBack&gt"]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:07]]></Time>
+<TimeTick>1405534627</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="11" Source="AltaAveria" SourceLine="16" >
+<Disp><![CDATA[Número de Línea:.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Número de Línea:.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["11"]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:07]]></Time>
+<TimeTick>1405534627</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="13" Source="AltaAveria" SourceLine="17" >
+<Disp><![CDATA[Número de Línea:.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Edit.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicTab&gt"]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:08]]></Time>
+<TimeTick>1405534628</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="15" Source="AltaAveria" SourceLine="18" >
+<Disp><![CDATA[Edit.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Edit.SetCaretPos]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:08]]></Time>
+<TimeTick>1405534628</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="17" Source="AltaAveria" SourceLine="19" >
+<Disp><![CDATA[Edit.SetCaretPos]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Edit.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["57782129"]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:08]]></Time>
+<TimeTick>1405534628</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="19" Source="AltaAveria" SourceLine="20" >
+<Disp><![CDATA[Edit.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[&Buscar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:08]]></Time>
+<TimeTick>1405534628</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="21" Source="AltaAveria" SourceLine="21" >
+<Disp><![CDATA[&Buscar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="8" Source="AltaAveria" SourceLine="15" >
+<Disp><![CDATA[Recepcionar Averías]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Información]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:44]]></Time>
+<TimeTick>1405534664</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[&Bien.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:45]]></Time>
+<TimeTick>1405534665</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="30" status="Warning" Source="AltaAveria" SourceLine="23" >
+<Disp><![CDATA[&Bien.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[&Bien]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot find the "&Bien" object's parent "Información" (class Window). Verify that parent properties match an object currently displayed in your application.]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:45]]></Time>
+<TimeTick>1405534665</TimeTick>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Información]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>regexpwndtitle = Información<br>regexpwndclass = AE Runtime<br>is owned window = 0<br>is child window = 0<br>]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:45]]></Time>
+<TimeTick>1405534665</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="32" status="Warning" nType="Parent description" Source="AltaAveria" SourceLine="23" >
+<Disp><![CDATA[Información]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="31" status="Failed" nType="Run Error" Source="AltaAveria" SourceLine="23" >
+<Disp><![CDATA[&Bien]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="29" status="Failed" Source="AltaAveria" SourceLine="23" >
+<Disp><![CDATA[Información]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot find the &quot;&amp;Bien&quot; object's parent &quot;Información&quot; (class Window). Verify that parent properties match an object currently displayed in your application.<BR>Line (24): &quot;Window(&quot;Información&quot;).WinButton(&quot;&amp;Bien&quot;).Click&quot;. ]]></Details>
+<Time><![CDATA[16/07/2014 - 15:17:45]]></Time>
+<TimeTick>1405534665</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="33" status="Failed" Source="AltaAveria" SourceLine="23" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Recepcionar Averías]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:18]]></Time>
+<TimeTick>1405534698</TimeTick>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[&?.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:18]]></Time>
+<TimeTick>1405534698</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="36" Source="AltaAveria" SourceLine="23" >
+<Disp><![CDATA[&?.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="35" Source="AltaAveria" SourceLine="23" >
+<Disp><![CDATA[Recepcionar Averías]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Códigos de Falta]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:22]]></Time>
+<TimeTick>1405534702</TimeTick>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[48, 44]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:22]]></Time>
+<TimeTick>1405534702</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="39" Source="AltaAveria" SourceLine="27" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:25]]></Time>
+<TimeTick>1405534705</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="41" Source="AltaAveria" SourceLine="33" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[48, 44]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:25]]></Time>
+<TimeTick>1405534705</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="43" Source="AltaAveria" SourceLine="27" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:26]]></Time>
+<TimeTick>1405534706</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="45" Source="AltaAveria" SourceLine="33" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[48, 44]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:26]]></Time>
+<TimeTick>1405534706</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="47" Source="AltaAveria" SourceLine="27" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:28]]></Time>
+<TimeTick>1405534708</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="49" Source="AltaAveria" SourceLine="33" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[48, 44]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:28]]></Time>
+<TimeTick>1405534708</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="51" Source="AltaAveria" SourceLine="27" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:29]]></Time>
+<TimeTick>1405534709</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="53" Source="AltaAveria" SourceLine="33" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[48, 44]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:29]]></Time>
+<TimeTick>1405534709</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="55" Source="AltaAveria" SourceLine="27" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:31]]></Time>
+<TimeTick>1405534711</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="57" Source="AltaAveria" SourceLine="33" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[48, 44]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:31]]></Time>
+<TimeTick>1405534711</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="59" Source="AltaAveria" SourceLine="27" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[&Seleccionar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:32]]></Time>
+<TimeTick>1405534712</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="61" Source="AltaAveria" SourceLine="30" >
+<Disp><![CDATA[&Seleccionar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="38" Source="AltaAveria" SourceLine="27" >
+<Disp><![CDATA[Códigos de Falta]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Recepcionar Averías]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:33]]></Time>
+<TimeTick>1405534713</TimeTick>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[Recepcionar Averías]]></Obj>
+<Details plainTxt="False" ><![CDATA[The system cannot find the path specified.
+]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:33]]></Time>
+<TimeTick>1405534713</TimeTick>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Recepcionar Averías]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>regexpwndtitle = Recepcionar Averías<br>regexpwndclass = AE Runtime<br>is owned window = 0<br>is child window = 0<br>]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:33]]></Time>
+<TimeTick>1405534713</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="64" status="Warning" nType="Description" Source="AltaAveria" SourceLine="36" >
+<Disp><![CDATA[Recepcionar Averías]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="4" nRep="63" status="Failed" nType="Run Error" Source="AltaAveria" SourceLine="36" >
+<Disp><![CDATA[Recepcionar Averías]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="62" status="Failed" Source="AltaAveria" SourceLine="36" >
+<Disp><![CDATA[Recepcionar Averías]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[The system cannot find the path specified.<BR><BR>Line (37): &quot;Window(&quot;Recepcionar Averías&quot;).CaptureBitmap &quot;C:\Automatización\COTA\Capturas\AltaAveria\Averia.png&quot;, True&quot;. ]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:33]]></Time>
+<TimeTick>1405534713</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="65" status="Failed" Source="AltaAveria" SourceLine="36" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Recepcionar Averías]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:52]]></Time>
+<TimeTick>1405534732</TimeTick>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[Con&firmar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:18:52]]></Time>
+<TimeTick>1405534732</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="68" Source="AltaAveria" SourceLine="37" >
+<Disp><![CDATA[Con&firmar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[&Volver.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:19:04]]></Time>
+<TimeTick>1405534744</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="70" Source="AltaAveria" SourceLine="38" >
+<Disp><![CDATA[&Volver.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="67" Source="AltaAveria" SourceLine="37" >
+<Disp><![CDATA[Recepcionar Averías]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[Menú Principal Averías_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:19:04]]></Time>
+<TimeTick>1405534744</TimeTick>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[&Volver.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:19:04]]></Time>
+<TimeTick>1405534744</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="73" Source="AltaAveria" SourceLine="39" >
+<Disp><![CDATA[&Volver.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="72" Source="AltaAveria" SourceLine="39" >
+<Disp><![CDATA[Menú Principal Averías_2]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[Menú Principal Averías]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[16/07/2014 - 15:19:04]]></Time>
+<TimeTick>1405534744</TimeTick>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[Menú Principal Averías.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[70, 373]]></Details>
+<Time><![CDATA[16/07/2014 - 15:19:04]]></Time>
+<TimeTick>1405534744</TimeTick>
+<NodeArgs eType="Replay" icon="4" nRep="76" Source="AltaAveria" SourceLine="40" >
+<Disp><![CDATA[Menú Principal Averías.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[&Volver.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[16/07/2014 - 15:19:04]]></Time>
+<TimeTick>1405534744</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="78" Source="AltaAveria" SourceLine="41" >
+<Disp><![CDATA[&Volver.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[Performance]]></Obj>
+<Details plainTxt="False" ><![CDATA[Failed to end transaction "Performance". Confirm that there is a corresponding StartTransaction step.]]></Details>
+<Time><![CDATA[16/07/2014 - 15:19:04]]></Time>
+<TimeTick>1405534744</TimeTick>
+<NodeArgs eType="Transaction" icon="10" nRep="79" status="Failed" nType="End Transaction" Source="AltaAveria" SourceLine="43" >
+<Disp><![CDATA[Performance]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="75" status="Failed" Source="AltaAveria" SourceLine="40" >
+<Disp><![CDATA[Menú Principal Averías]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="16/07/2014 - 15:17:06" eTime="16/07/2014 - 15:19:04" passed="0" failed="5" warnings="3" ></Summary>
+<NodeArgs eType="StartAction" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[AltaAveria Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Summary sTime="16/07/2014 - 15:16:56" eTime="16/07/2014 - 15:19:04" passed="0" failed="5" warnings="3" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test Alta Avería Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
