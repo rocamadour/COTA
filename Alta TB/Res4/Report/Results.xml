@@ -1,0 +1,2273 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Argentina Standard Time">
+<General productName="HP Unified Functional Testing" productVer="11.50" os="Windows 7" host="ARBACNBK148"><DocLocation><![CDATA[C:\Automatización\COTA\Alta TB]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[Alta TB]]></DName>
+<Res><![CDATA[Res4]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[AltaTB]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Performance]]></Obj>
+<Details plainTxt="False" ><![CDATA[Transaction "Performance" started.]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:42]]></Time>
+<TimeTick>1405627962</TimeTick>
+<NodeArgs eType="Transaction" icon="5" nRep="8" nType="Start Transaction" Source="AltaTB" SourceLine="0" >
+<Disp><![CDATA[Performance]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T6">
+<AName><![CDATA[LogIn [LogIn]]]></AName>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[PULIST.EXE]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:45]]></Time>
+<TimeTick>1405627965</TimeTick>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Cancel.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:45]]></Time>
+<TimeTick>1405627965</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="12" Source="LogIn [LogIn]" SourceLine="4" >
+<Disp><![CDATA[Cancel.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="11" Source="LogIn [LogIn]" SourceLine="4" >
+<Disp><![CDATA[PULIST.EXE]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Rul148q]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:56]]></Time>
+<TimeTick>1405627976</TimeTick>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Rul148q.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["enabled", True, True, 25]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:56]]></Time>
+<TimeTick>1405627976</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="15" Source="LogIn [LogIn]" SourceLine="5" >
+<Disp><![CDATA[Rul148q.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[&No.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:56]]></Time>
+<TimeTick>1405627976</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="17" Source="LogIn [LogIn]" SourceLine="6" >
+<Disp><![CDATA[&No.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="14" Source="LogIn [LogIn]" SourceLine="5" >
+<Disp><![CDATA[Rul148q]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Bienvenido]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:59]]></Time>
+<TimeTick>1405627979</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Bienvenido.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[338, 154]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:59]]></Time>
+<TimeTick>1405627979</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="20" Source="LogIn [LogIn]" SourceLine="7" >
+<Disp><![CDATA[Bienvenido.Move]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Usuario:]]></Obj>
+<Details plainTxt="False" ><![CDATA[WinEditor]]></Details>
+<Time><![CDATA[17/07/2014 - 17:12:59]]></Time>
+<TimeTick>1405627979</TimeTick>
+<HtmlStep rID="T15">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Usuario:": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:12:59</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Usuario: Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405627979</TimeTick>
+<NodeArgs eType="Verification" icon="10" nRep="22" status="Passed" Source="LogIn [LogIn]" SourceLine="9" >
+<Disp><![CDATA[Checkpoint "Usuario:"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="10" nRep="21" status="Passed" Source="LogIn [LogIn]" SourceLine="9" >
+<Disp><![CDATA[Usuario:]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Usuario:.SetCaretPos]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:00]]></Time>
+<TimeTick>1405627980</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="24" Source="LogIn [LogIn]" SourceLine="10" >
+<Disp><![CDATA[Usuario:.SetCaretPos]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Usuario:.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["cgc014"]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:00]]></Time>
+<TimeTick>1405627980</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="26" Source="LogIn [LogIn]" SourceLine="12" >
+<Disp><![CDATA[Usuario:.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Usuario:.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["&lt__MicTab&gt"]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:01]]></Time>
+<TimeTick>1405627981</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="28" Source="LogIn [LogIn]" SourceLine="13" >
+<Disp><![CDATA[Usuario:.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Password:]]></Obj>
+<Details plainTxt="False" ><![CDATA[WinEdit]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:02]]></Time>
+<TimeTick>1405627982</TimeTick>
+<HtmlStep rID="T20">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Password:": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:13:02</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Password: Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405627982</TimeTick>
+<NodeArgs eType="Verification" icon="11" nRep="30" status="Passed" Source="LogIn [LogIn]" SourceLine="14" >
+<Disp><![CDATA[Checkpoint "Password:"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="11" nRep="29" status="Passed" Source="LogIn [LogIn]" SourceLine="14" >
+<Disp><![CDATA[Password:]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Password:.SetSecureText]]></Obj>
+<Details plainTxt="False" ><![CDATA["53c812547464b66b86fe3681de1ea535c2d53be1cfa8"]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:03]]></Time>
+<TimeTick>1405627983</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="32" Source="LogIn [LogIn]" SourceLine="16" >
+<Disp><![CDATA[Password:.SetSecureText]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="19" status="Passed" Source="LogIn [LogIn]" SourceLine="7" >
+<Disp><![CDATA[Bienvenido]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj ><![CDATA[LogIn]]></Obj>
+<Details ><![CDATA[Funcionó]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:04]]></Time>
+<TimeTick>1405627984</TimeTick>
+<NodeArgs eType="User" icon="12" nRep="33" status="Passed" Source="LogIn [LogIn]" SourceLine="18" >
+<Disp><![CDATA[LogIn]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act2\Row0\ssf1.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Bienvenido]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:04]]></Time>
+<TimeTick>1405627984</TimeTick>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Con&firmar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:04]]></Time>
+<TimeTick>1405627984</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="36" Source="LogIn [LogIn]" SourceLine="19" >
+<Disp><![CDATA[Con&firmar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="35" Source="LogIn [LogIn]" SourceLine="19" >
+<Disp><![CDATA[Bienvenido]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/07/2014 - 17:12:43" eTime="17/07/2014 - 17:13:04" passed="3" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="6" nRep="9" status="Passed" >
+<Disp><![CDATA[LogIn [LogIn] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Menú Principal]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:18]]></Time>
+<TimeTick>1405627998</TimeTick>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Menú Principal.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["enabled", True, True, 25]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:18]]></Time>
+<TimeTick>1405627998</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="40" Source="AltaTB" SourceLine="6" >
+<Disp><![CDATA[Menú Principal.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[Menú Principal.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[381, 162]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:18]]></Time>
+<TimeTick>1405627998</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="42" Source="AltaTB" SourceLine="7" >
+<Disp><![CDATA[Menú Principal.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T28">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Menú Principal": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:13:19</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Menú Principal Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Menú Principal&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405627999</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="43" status="Passed" Source="AltaTB" SourceLine="8" >
+<Disp><![CDATA[Checkpoint "Menú Principal"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[Administración de &Pedidos.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:19]]></Time>
+<TimeTick>1405627999</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="45" Source="AltaTB" SourceLine="9" >
+<Disp><![CDATA[Administración de &Pedidos.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="39" status="Passed" Source="AltaTB" SourceLine="6" >
+<Disp><![CDATA[Menú Principal]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[Administración de Pedidos]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:22]]></Time>
+<TimeTick>1405628002</TimeTick>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[Administración de Pedidos.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[413, 139]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:22]]></Time>
+<TimeTick>1405628002</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="48" Source="AltaTB" SourceLine="10" >
+<Disp><![CDATA[Administración de Pedidos.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T32">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Administración de Pedidos": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:13:23</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Administración de Pedidos Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Administración de Pedidos&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628003</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="49" status="Passed" Source="AltaTB" SourceLine="11" >
+<Disp><![CDATA[Checkpoint "Administración de Pedidos"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[Clientes.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:23]]></Time>
+<TimeTick>1405628003</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="51" Source="AltaTB" SourceLine="12" >
+<Disp><![CDATA[Clientes.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Gestión de &Pedidos]]></Obj>
+<Details plainTxt="False" ><![CDATA[WinButton]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:24]]></Time>
+<TimeTick>1405628004</TimeTick>
+<HtmlStep rID="T35">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Gestión de &Pedidos": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:13:24</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Gestión de &amp;Pedidos Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628004</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="53" status="Passed" Source="AltaTB" SourceLine="13" >
+<Disp><![CDATA[Checkpoint "Gestión de &Pedidos"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="52" status="Passed" Source="AltaTB" SourceLine="13" >
+<Disp><![CDATA[Gestión de &Pedidos]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Gestión de &Pedidos.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:24]]></Time>
+<TimeTick>1405628004</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="55" Source="AltaTB" SourceLine="14" >
+<Disp><![CDATA[Gestión de &Pedidos.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="47" status="Passed" Source="AltaTB" SourceLine="10" >
+<Disp><![CDATA[Administración de Pedidos]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[Menú de Tipos de Pedido]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:27]]></Time>
+<TimeTick>1405628007</TimeTick>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[Menú de Tipos de Pedido.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[414, 135]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:27]]></Time>
+<TimeTick>1405628007</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="58" Source="AltaTB" SourceLine="15" >
+<Disp><![CDATA[Menú de Tipos de Pedido.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T39">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Menú de Tipos de Pedido": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:13:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Menú de Tipos de Pedido Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Menú de Tipos de Pedido&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628007</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="59" status="Passed" Source="AltaTB" SourceLine="16" >
+<Disp><![CDATA[Checkpoint "Menú de Tipos de Pedido"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[Menú de Tipos de Pedido.Activate]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:28]]></Time>
+<TimeTick>1405628008</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="61" Source="AltaTB" SourceLine="17" >
+<Disp><![CDATA[Menú de Tipos de Pedido.Activate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[Número:.SetCaretPos]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:28]]></Time>
+<TimeTick>1405628008</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="63" Source="AltaTB" SourceLine="18" >
+<Disp><![CDATA[Número:.SetCaretPos]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[Número:.SetSelection]]></Obj>
+<Details plainTxt="False" ><![CDATA[0, 0, 0, 1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:28]]></Time>
+<TimeTick>1405628008</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="65" Source="AltaTB" SourceLine="19" >
+<Disp><![CDATA[Número:.SetSelection]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[Número:.Type]]></Obj>
+<Details plainTxt="False" ><![CDATA["3917001"]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:29]]></Time>
+<TimeTick>1405628009</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="67" Source="AltaTB" SourceLine="21" >
+<Disp><![CDATA[Número:.Type]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[B&uscar Cliente.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:30]]></Time>
+<TimeTick>1405628010</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="69" Source="AltaTB" SourceLine="22" >
+<Disp><![CDATA[B&uscar Cliente.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[&?.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:34]]></Time>
+<TimeTick>1405628014</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="71" Source="AltaTB" SourceLine="23" >
+<Disp><![CDATA[&?.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="57" status="Passed" Source="AltaTB" SourceLine="15" >
+<Disp><![CDATA[Menú de Tipos de Pedido]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[Tipo Producto]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:39]]></Time>
+<TimeTick>1405628019</TimeTick>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:39]]></Time>
+<TimeTick>1405628019</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="74" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:41]]></Time>
+<TimeTick>1405628021</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="76" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:42]]></Time>
+<TimeTick>1405628022</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="78" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:43]]></Time>
+<TimeTick>1405628023</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="80" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:44]]></Time>
+<TimeTick>1405628024</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="82" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:46]]></Time>
+<TimeTick>1405628026</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="84" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:47]]></Time>
+<TimeTick>1405628027</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="86" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:49]]></Time>
+<TimeTick>1405628029</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="88" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:49]]></Time>
+<TimeTick>1405628029</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="90" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:51]]></Time>
+<TimeTick>1405628031</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="92" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:52]]></Time>
+<TimeTick>1405628032</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="94" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:54]]></Time>
+<TimeTick>1405628034</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="96" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T59">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:54]]></Time>
+<TimeTick>1405628034</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="98" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:56]]></Time>
+<TimeTick>1405628036</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="100" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:57]]></Time>
+<TimeTick>1405628037</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="102" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:13:59]]></Time>
+<TimeTick>1405628039</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="104" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:00]]></Time>
+<TimeTick>1405628040</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="106" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:02]]></Time>
+<TimeTick>1405628042</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="108" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:02]]></Time>
+<TimeTick>1405628042</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="110" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:04]]></Time>
+<TimeTick>1405628044</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="112" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:05]]></Time>
+<TimeTick>1405628045</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="114" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:07]]></Time>
+<TimeTick>1405628047</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="116" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T69">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:07]]></Time>
+<TimeTick>1405628047</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="118" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:09]]></Time>
+<TimeTick>1405628049</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="120" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:10]]></Time>
+<TimeTick>1405628050</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="122" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T72">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:12]]></Time>
+<TimeTick>1405628052</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="124" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T73">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:12]]></Time>
+<TimeTick>1405628052</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="126" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T74">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:14]]></Time>
+<TimeTick>1405628054</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="128" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T75">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:15]]></Time>
+<TimeTick>1405628055</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="130" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T76">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:17]]></Time>
+<TimeTick>1405628057</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="132" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T77">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:18]]></Time>
+<TimeTick>1405628058</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="134" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T78">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:19]]></Time>
+<TimeTick>1405628059</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="136" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T79">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:20]]></Time>
+<TimeTick>1405628060</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="138" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T80">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:22]]></Time>
+<TimeTick>1405628062</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="140" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T81">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:23]]></Time>
+<TimeTick>1405628063</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="142" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T82">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:25]]></Time>
+<TimeTick>1405628065</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="144" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T83">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:25]]></Time>
+<TimeTick>1405628065</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="146" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T84">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:27]]></Time>
+<TimeTick>1405628067</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="148" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T85">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:28]]></Time>
+<TimeTick>1405628068</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="150" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T86">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:30]]></Time>
+<TimeTick>1405628070</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="152" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T87">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:30]]></Time>
+<TimeTick>1405628070</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="154" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T88">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:32]]></Time>
+<TimeTick>1405628072</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="156" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T89">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:33]]></Time>
+<TimeTick>1405628073</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="158" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T90">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:35]]></Time>
+<TimeTick>1405628075</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="160" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T91">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:36]]></Time>
+<TimeTick>1405628076</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="162" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T92">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:38]]></Time>
+<TimeTick>1405628078</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="164" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T93">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:38]]></Time>
+<TimeTick>1405628078</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="166" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T94">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:40]]></Time>
+<TimeTick>1405628080</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="168" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T95">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:41]]></Time>
+<TimeTick>1405628081</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="170" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T96">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:43]]></Time>
+<TimeTick>1405628083</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="172" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T97">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:43]]></Time>
+<TimeTick>1405628083</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="174" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T98">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:45]]></Time>
+<TimeTick>1405628085</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="176" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T99">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:46]]></Time>
+<TimeTick>1405628086</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="178" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T100">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:48]]></Time>
+<TimeTick>1405628088</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="180" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T101">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:49]]></Time>
+<TimeTick>1405628089</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="182" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T102">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:50]]></Time>
+<TimeTick>1405628090</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="184" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T103">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:51]]></Time>
+<TimeTick>1405628091</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="186" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T104">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:53]]></Time>
+<TimeTick>1405628093</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="188" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T105">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:54]]></Time>
+<TimeTick>1405628094</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="190" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T106">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:55]]></Time>
+<TimeTick>1405628095</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="192" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T107">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:56]]></Time>
+<TimeTick>1405628096</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="194" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T108">
+<Obj plainTxt="False" ><![CDATA[ScrollBar.NextLine]]></Obj>
+<Details plainTxt="False" ><![CDATA[1]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:58]]></Time>
+<TimeTick>1405628098</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="196" Source="AltaTB" SourceLine="32" >
+<Disp><![CDATA[ScrollBar.NextLine]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T109">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[24, 47]]></Details>
+<Time><![CDATA[17/07/2014 - 17:14:59]]></Time>
+<TimeTick>1405628099</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="198" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T110">
+<Obj plainTxt="False" ><![CDATA[&Seleccionar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:01]]></Time>
+<TimeTick>1405628101</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="200" Source="AltaTB" SourceLine="29" >
+<Disp><![CDATA[&Seleccionar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="73" Source="AltaTB" SourceLine="26" >
+<Disp><![CDATA[Tipo Producto]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T111">
+<Obj plainTxt="False" ><![CDATA[Menú de Tipos de Pedido]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:02]]></Time>
+<TimeTick>1405628102</TimeTick>
+<Step rID="T112">
+<Obj plainTxt="False" ><![CDATA[Alta de Línea]]></Obj>
+<Details plainTxt="False" ><![CDATA[WinCheckBox]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:02]]></Time>
+<TimeTick>1405628102</TimeTick>
+<HtmlStep rID="T113">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Alta de Línea": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:15:02</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Alta de Línea Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628102</TimeTick>
+<NodeArgs eType="Verification" icon="16" nRep="203" status="Passed" Source="AltaTB" SourceLine="35" >
+<Disp><![CDATA[Checkpoint "Alta de Línea"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="16" nRep="202" status="Passed" Source="AltaTB" SourceLine="35" >
+<Disp><![CDATA[Alta de Línea]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T114">
+<Obj plainTxt="False" ><![CDATA[Alta de Línea.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:03]]></Time>
+<TimeTick>1405628103</TimeTick>
+<NodeArgs eType="Replay" icon="16" nRep="205" Source="AltaTB" SourceLine="37" >
+<Disp><![CDATA[Alta de Línea.Set]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="201" status="Passed" Source="AltaTB" SourceLine="35" >
+<Disp><![CDATA[Menú de Tipos de Pedido]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T115">
+<Obj plainTxt="False" ><![CDATA[Búsqueda de Cuentas del]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:10]]></Time>
+<TimeTick>1405628110</TimeTick>
+<Step rID="T116">
+<Obj plainTxt="False" ><![CDATA[Búsqueda de Cuentas del.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[345, 147]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:10]]></Time>
+<TimeTick>1405628110</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="208" Source="AltaTB" SourceLine="38" >
+<Disp><![CDATA[Búsqueda de Cuentas del.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T117">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Búsqueda de Cuentas del": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:15:10</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Búsqueda de Cuentas del Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Búsqueda de Cuentas del Cliente&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628110</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="209" status="Passed" Source="AltaTB" SourceLine="39" >
+<Disp><![CDATA[Checkpoint "Búsqueda de Cuentas del"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T118">
+<Obj plainTxt="False" ><![CDATA[Nombre:.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[177, 46]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:10]]></Time>
+<TimeTick>1405628110</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="211" Source="AltaTB" SourceLine="40" >
+<Disp><![CDATA[Nombre:.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T119">
+<Obj plainTxt="False" ><![CDATA[&Seleccionar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:11]]></Time>
+<TimeTick>1405628111</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="213" Source="AltaTB" SourceLine="41" >
+<Disp><![CDATA[&Seleccionar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="207" status="Passed" Source="AltaTB" SourceLine="38" >
+<Disp><![CDATA[Búsqueda de Cuentas del]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T120">
+<Obj ><![CDATA[Pedidos]]></Obj>
+<Details ><![CDATA[Funcionó]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:16]]></Time>
+<TimeTick>1405628116</TimeTick>
+<NodeArgs eType="User" icon="12" nRep="214" status="Passed" Source="AltaTB" SourceLine="43" >
+<Disp><![CDATA[Pedidos]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf2.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T121">
+<Obj plainTxt="False" ><![CDATA[Menú de Tipos de Pedido]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:17]]></Time>
+<TimeTick>1405628117</TimeTick>
+<Step rID="T122">
+<Obj plainTxt="False" ><![CDATA[&Confirmar]]></Obj>
+<Details plainTxt="False" ><![CDATA[WinButton]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:17]]></Time>
+<TimeTick>1405628117</TimeTick>
+<HtmlStep rID="T123">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "&Confirmar": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:15:17</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">&amp;Confirmar Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628117</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="217" status="Passed" Source="AltaTB" SourceLine="44" >
+<Disp><![CDATA[Checkpoint "&Confirmar"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="216" status="Passed" Source="AltaTB" SourceLine="44" >
+<Disp><![CDATA[&Confirmar]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T124">
+<Obj plainTxt="False" ><![CDATA[&Confirmar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:17]]></Time>
+<TimeTick>1405628117</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="219" Source="AltaTB" SourceLine="45" >
+<Disp><![CDATA[&Confirmar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="215" status="Passed" Source="AltaTB" SourceLine="44" >
+<Disp><![CDATA[Menú de Tipos de Pedido]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T125">
+<Obj plainTxt="False" ><![CDATA[Ingresar Alta de Línea]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:25]]></Time>
+<TimeTick>1405628125</TimeTick>
+<Step rID="T126">
+<Obj plainTxt="False" ><![CDATA[Ingresar Alta de Línea.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[382, 138]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:25]]></Time>
+<TimeTick>1405628125</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="222" Source="AltaTB" SourceLine="46" >
+<Disp><![CDATA[Ingresar Alta de Línea.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T127">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Ingresar Alta de Línea": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:15:26</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Ingresar Alta de Línea Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Ingresar Alta de Línea &nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628126</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="223" status="Passed" Source="AltaTB" SourceLine="47" >
+<Disp><![CDATA[Checkpoint "Ingresar Alta de Línea"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T128">
+<Obj plainTxt="False" ><![CDATA[Ingresar Alta de Línea.Activate]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:26]]></Time>
+<TimeTick>1405628126</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="225" Source="AltaTB" SourceLine="48" >
+<Disp><![CDATA[Ingresar Alta de Línea.Activate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T129">
+<Obj plainTxt="False" ><![CDATA[&?]]></Obj>
+<Details plainTxt="False" ><![CDATA[WinButton]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:27]]></Time>
+<TimeTick>1405628127</TimeTick>
+<HtmlStep rID="T130">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "&?": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:15:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">&amp;? Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628127</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="227" status="Passed" Source="AltaTB" SourceLine="49" >
+<Disp><![CDATA[Checkpoint "&?"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="226" status="Passed" Source="AltaTB" SourceLine="49" >
+<Disp><![CDATA[&?]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T131">
+<Obj plainTxt="False" ><![CDATA[&?_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[WinButton]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:27]]></Time>
+<TimeTick>1405628127</TimeTick>
+<HtmlStep rID="T132">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "&?_2": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:15:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">&amp;?_2 Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628127</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="229" status="Passed" Source="AltaTB" SourceLine="50" >
+<Disp><![CDATA[Checkpoint "&?_2"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="228" status="Passed" Source="AltaTB" SourceLine="50" >
+<Disp><![CDATA[&?_2]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T133">
+<Obj plainTxt="False" ><![CDATA[&?.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:27]]></Time>
+<TimeTick>1405628127</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="231" Source="AltaTB" SourceLine="51" >
+<Disp><![CDATA[&?.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="221" status="Passed" Source="AltaTB" SourceLine="46" >
+<Disp><![CDATA[Ingresar Alta de Línea]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T134">
+<Obj plainTxt="False" ><![CDATA[Tipo de Categoría]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:30]]></Time>
+<TimeTick>1405628130</TimeTick>
+<Step rID="T135">
+<Obj plainTxt="False" ><![CDATA[AE Runtime.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[164, 86]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:30]]></Time>
+<TimeTick>1405628130</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="234" Source="AltaTB" SourceLine="52" >
+<Disp><![CDATA[AE Runtime.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T136">
+<Obj plainTxt="False" ><![CDATA[&Seleccionar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:31]]></Time>
+<TimeTick>1405628131</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="236" Source="AltaTB" SourceLine="53" >
+<Disp><![CDATA[&Seleccionar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="233" Source="AltaTB" SourceLine="52" >
+<Disp><![CDATA[Tipo de Categoría]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T137">
+<Obj plainTxt="False" ><![CDATA[Ingresar Alta de Línea]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:35]]></Time>
+<TimeTick>1405628135</TimeTick>
+<Step rID="T138">
+<Obj plainTxt="False" ><![CDATA[&?_2.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:35]]></Time>
+<TimeTick>1405628135</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="239" Source="AltaTB" SourceLine="54" >
+<Disp><![CDATA[&?_2.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T139">
+<Obj plainTxt="False" ><![CDATA[A&gregar a Lista.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:36]]></Time>
+<TimeTick>1405628136</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="241" Source="AltaTB" SourceLine="55" >
+<Disp><![CDATA[A&gregar a Lista.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="238" Source="AltaTB" SourceLine="54" >
+<Disp><![CDATA[Ingresar Alta de Línea]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T140">
+<Obj plainTxt="False" ><![CDATA[Confirmación]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:46]]></Time>
+<TimeTick>1405628146</TimeTick>
+<Step rID="T141">
+<Obj plainTxt="False" ><![CDATA[&Si.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:46]]></Time>
+<TimeTick>1405628146</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="244" Source="AltaTB" SourceLine="56" >
+<Disp><![CDATA[&Si.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="243" Source="AltaTB" SourceLine="56" >
+<Disp><![CDATA[Confirmación]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T142">
+<Obj ><![CDATA[Alta de Linea]]></Obj>
+<Details ><![CDATA[Funcionó]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:56]]></Time>
+<TimeTick>1405628156</TimeTick>
+<NodeArgs eType="User" icon="12" nRep="245" status="Passed" Source="AltaTB" SourceLine="58" >
+<Disp><![CDATA[Alta de Linea]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf3.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T143">
+<Obj plainTxt="False" ><![CDATA[Ingresar Alta de Línea]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:56]]></Time>
+<TimeTick>1405628156</TimeTick>
+<Step rID="T144">
+<Obj plainTxt="False" ><![CDATA[Con&firmar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:15:56]]></Time>
+<TimeTick>1405628156</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="248" Source="AltaTB" SourceLine="59" >
+<Disp><![CDATA[Con&firmar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="247" Source="AltaTB" SourceLine="59" >
+<Disp><![CDATA[Ingresar Alta de Línea]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T145">
+<Obj plainTxt="False" ><![CDATA[Lista de formas de pago]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:07]]></Time>
+<TimeTick>1405628167</TimeTick>
+<Step rID="T146">
+<Obj plainTxt="False" ><![CDATA[Lista de formas de pago.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[315, 155]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:07]]></Time>
+<TimeTick>1405628167</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="251" Source="AltaTB" SourceLine="60" >
+<Disp><![CDATA[Lista de formas de pago.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T147">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Lista de formas de pago": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:16:08</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Lista de formas de pago Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Lista de formas de pago para el cliente&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628168</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="252" status="Passed" Source="AltaTB" SourceLine="61" >
+<Disp><![CDATA[Checkpoint "Lista de formas de pago"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="250" status="Passed" Source="AltaTB" SourceLine="60" >
+<Disp><![CDATA[Lista de formas de pago]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T148">
+<Obj ><![CDATA[Formas de Pago]]></Obj>
+<Details ><![CDATA[Funcionó]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:09]]></Time>
+<TimeTick>1405628169</TimeTick>
+<NodeArgs eType="User" icon="12" nRep="253" status="Passed" Source="AltaTB" SourceLine="63" >
+<Disp><![CDATA[Formas de Pago]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf4.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T149">
+<Obj plainTxt="False" ><![CDATA[Lista de formas de pago]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:09]]></Time>
+<TimeTick>1405628169</TimeTick>
+<Step rID="T150">
+<Obj plainTxt="False" ><![CDATA[Con&firmar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:09]]></Time>
+<TimeTick>1405628169</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="256" Source="AltaTB" SourceLine="64" >
+<Disp><![CDATA[Con&firmar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="255" Source="AltaTB" SourceLine="64" >
+<Disp><![CDATA[Lista de formas de pago]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T151">
+<Obj plainTxt="False" ><![CDATA[Lista de promociones a]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:52]]></Time>
+<TimeTick>1405628212</TimeTick>
+<Step rID="T152">
+<Obj plainTxt="False" ><![CDATA[Lista de promociones a.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["enabled", True, 30]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:52]]></Time>
+<TimeTick>1405628212</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="261" status="Warning" Source="AltaTB" SourceLine="66" >
+<Disp><![CDATA[Lista de promociones a.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T153">
+<Obj plainTxt="False" ><![CDATA[Lista de promociones a.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[294, 125]]></Details>
+<Time><![CDATA[17/07/2014 - 17:16:59]]></Time>
+<TimeTick>1405628219</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="263" Source="AltaTB" SourceLine="67" >
+<Disp><![CDATA[Lista de promociones a.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T154">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Lista de promociones a": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:16:59</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Lista de promociones a Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Lista de promociones a las cuales puede acceder el cliente&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628219</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="264" status="Passed" Source="AltaTB" SourceLine="68" >
+<Disp><![CDATA[Checkpoint "Lista de promociones a"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="260" status="Warning" Source="AltaTB" SourceLine="66" >
+<Disp><![CDATA[Lista de promociones a]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T155">
+<Obj ><![CDATA[Promociones]]></Obj>
+<Details ><![CDATA[Funcionó]]></Details>
+<Time><![CDATA[17/07/2014 - 17:17:00]]></Time>
+<TimeTick>1405628220</TimeTick>
+<NodeArgs eType="User" icon="12" nRep="265" status="Passed" Source="AltaTB" SourceLine="70" >
+<Disp><![CDATA[Promociones]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf5.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T156">
+<Obj plainTxt="False" ><![CDATA[Lista de promociones a]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:17:00]]></Time>
+<TimeTick>1405628220</TimeTick>
+<Step rID="T157">
+<Obj plainTxt="False" ><![CDATA[Con&firmar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:17:00]]></Time>
+<TimeTick>1405628220</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="268" Source="AltaTB" SourceLine="71" >
+<Disp><![CDATA[Con&firmar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="267" Source="AltaTB" SourceLine="71" >
+<Disp><![CDATA[Lista de promociones a]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T158">
+<Obj plainTxt="False" ><![CDATA[Información]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:17:43]]></Time>
+<TimeTick>1405628263</TimeTick>
+<Step rID="T159">
+<Obj plainTxt="False" ><![CDATA[Información.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["enabled", True, 30]]></Details>
+<Time><![CDATA[17/07/2014 - 17:17:43]]></Time>
+<TimeTick>1405628263</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="273" status="Warning" Source="AltaTB" SourceLine="73" >
+<Disp><![CDATA[Información.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T160">
+<Obj plainTxt="False" ><![CDATA[&Bien.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:04]]></Time>
+<TimeTick>1405628284</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="277" Source="AltaTB" SourceLine="74" >
+<Disp><![CDATA[&Bien.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="272" status="Warning" Source="AltaTB" SourceLine="73" >
+<Disp><![CDATA[Información]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T161">
+<Obj plainTxt="False" ><![CDATA[Pedido Generado]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:10]]></Time>
+<TimeTick>1405628290</TimeTick>
+<Step rID="T162">
+<Obj plainTxt="False" ><![CDATA[Pedido Generado.Move]]></Obj>
+<Details plainTxt="False" ><![CDATA[314, 153]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:10]]></Time>
+<TimeTick>1405628290</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="280" Source="AltaTB" SourceLine="75" >
+<Disp><![CDATA[Pedido Generado.Move]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T163">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Pedido Generado": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 17/07/2014 - 17:18:10</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Pedido Generado Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">enabled&nbsp;</TD>
+				<TD class="Text" Title="">True&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Pedido Generado&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1405628290</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="281" status="Passed" Source="AltaTB" SourceLine="76" >
+<Disp><![CDATA[Checkpoint "Pedido Generado"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="279" status="Passed" Source="AltaTB" SourceLine="75" >
+<Disp><![CDATA[Pedido Generado]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T164">
+<Obj ><![CDATA[Finalizacion]]></Obj>
+<Details ><![CDATA[Funcionó]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:11]]></Time>
+<TimeTick>1405628291</TimeTick>
+<NodeArgs eType="User" icon="12" nRep="282" status="Passed" Source="AltaTB" SourceLine="78" >
+<Disp><![CDATA[Finalizacion]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf6.xml]]></Path>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T165">
+<Obj plainTxt="False" ><![CDATA[Pedido Generado]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:12]]></Time>
+<TimeTick>1405628292</TimeTick>
+<Step rID="T166">
+<Obj plainTxt="False" ><![CDATA[&Continuar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:12]]></Time>
+<TimeTick>1405628292</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="285" Source="AltaTB" SourceLine="79" >
+<Disp><![CDATA[&Continuar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="284" Source="AltaTB" SourceLine="79" >
+<Disp><![CDATA[Pedido Generado]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T167">
+<Obj plainTxt="False" ><![CDATA[Administración de Pedidos]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:38]]></Time>
+<TimeTick>1405628318</TimeTick>
+<Step rID="T168">
+<Obj plainTxt="False" ><![CDATA[Administración de Pedidos.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["enabled", True, True, 30]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:38]]></Time>
+<TimeTick>1405628318</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="289" Source="AltaTB" SourceLine="81" >
+<Disp><![CDATA[Administración de Pedidos.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T169">
+<Obj plainTxt="False" ><![CDATA[&Volver.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:38]]></Time>
+<TimeTick>1405628318</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="291" Source="AltaTB" SourceLine="82" >
+<Disp><![CDATA[&Volver.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T170">
+<Obj plainTxt="False" ><![CDATA[Performance]]></Obj>
+<Details plainTxt="False" ><![CDATA[Transaction "Performance" ended with "Pass" status (Total Duration: 357,2224 sec).]]></Details>
+<Time><![CDATA[17/07/2014 - 17:18:39]]></Time>
+<TimeTick>1405628319</TimeTick>
+<NodeArgs eType="Transaction" icon="17" nRep="292" nType="End Transaction" Source="AltaTB" SourceLine="84" >
+<Disp><![CDATA[Performance]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="288" Source="AltaTB" SourceLine="81" >
+<Disp><![CDATA[Administración de Pedidos]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="17/07/2014 - 17:12:41" eTime="17/07/2014 - 17:18:39" passed="18" failed="0" warnings="2" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Warning" >
+<Disp><![CDATA[AltaTB Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Warning" >
+<Disp><![CDATA[Alta TB Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="17/07/2014 - 17:12:20" eTime="17/07/2014 - 17:18:39" passed="21" failed="0" warnings="2" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Warning" >
+<Disp><![CDATA[Test Alta TB Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
